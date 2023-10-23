@@ -27,6 +27,7 @@ Version 02  | 3.339      | 0.161x       | 1.460x
 Version 03  | 20.590     | 0.026x       | 0.237x
 Version 04  | 1.211      | 0.445x       | 4.025x
 Version 05  | 0.787      | 0.685x       | 6.193x
+Version 06  | 0.633      | 0.852x       | 7.700x
 
 
 * Speedup (c) is the speedup factor of the python version over the ANSI-C version.
@@ -282,11 +283,47 @@ sys	0m0.035s
 ```
 
 
+
+### Version 06 (optimizations)
+
+This version further optimizes the NumPy version.
+
+* Vectorize choice to crossover or not.
+* Vectorize choice to mutate all bits per generation.
+* Preallocate arrays for random choices.
+* Use float32 for probabilsitic decisions (crossover and mutate)
+
+The source code is available here:
+
+* [version06.py](src/python/version06.py)
+
+```default
+time python ./version06.py
+```
+
+A sample of results is provided below.
+
+```default
+...
+>495 fitness=1000
+>496 fitness=1000
+>497 fitness=1000
+>498 fitness=1000
+>499 fitness=1000
+Done
+
+real	0m0.633s
+user	0m0.592s
+sys	0m0.033s
+```
+
+
+
+
 ## Ideas
 
 * Early stopping once solution found.
 * Do not re-evaluate if child is a copy of parent and not mutated.
-* Reuse arrays used for vectorized random number generation.
 * Remove all custom functions and do everything in one large function.
 * More vectorization somehow?
 * Try not to copy best solution found so far, somehow?
