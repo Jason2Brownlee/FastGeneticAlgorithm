@@ -6,13 +6,15 @@ Exploring how to develop a fast genetic algorithm implementation in Python.
 
 I really love genetic algorithms, always have.
 
-When I start using a new programming language, I topically develop a genetic algorithm to prove that I understand the language well enough.
+When I start using a new programming language, I typically develop a genetic algorithm to prove that I understand the language well enough.
 
-Optimization algorithms have to be fast and I had a thought: "can I get Python to run about as fast as c?"
+Optimization algorithms have to be fast and I had a thought:
 
-This project explores how we might develop an implementation of the "simple genetic algorithm" in Python that is about as fast as an implementation in ANSI C. It's probably not possible but how close can we get?
+> Can I get Python genetic algorithm to run about as fast as C?
 
-I did this years ago, just decided to make it public (someone asked me about it).
+This project explores how we might develop an implementation of the "simple genetic algorithm" in Python that is about as fast as an implementation in ANSI C. It's probably not possible but it is interesting to see how close can we get.
+
+I did this years ago, I've just decided to make it public (someone asked me about it).
 
 
 ## Results
@@ -27,17 +29,21 @@ Version 04  | 1.211      | 0.445x       | 4.025x
 Version 05  | 0.787      | 0.685x       | 6.193x
 
 
+* Speedup (c) is the speedup factor of the python version over the ANSI c version.
+* Speedup (v01) is the speedup factor of the Python version over version 01 Python version.
+* A speedup factor below 1 means the implementation is slower, above means it's faster.
+
 
 ## Simple Genetic Algorithm
 
 We will define the "simple genetic algorithm" as follows:
 
-* Uses a binary string or bitstring representation.
+* Uses a binary string or "bitstring" representation.
 * Uses tournament selection.
 * Uses one-point crossover.
 * Uses point mutation.
 * Solves the one max (sum of bits) problem.
-* Stops when the best solution is found.
+* No early stopping as we pretend we don't know the solution.
 
 All implementations use the same configuration for direct comparison:
 
@@ -45,9 +51,12 @@ All implementations use the same configuration for direct comparison:
 * 1,000 bits in each string.
 * 100 sized population.
 * 3 round tournament selection.
-* 500 epochs, no early stopping.
+* 500 epochs.
 * 1/n mutation probability.
 * 95% crossover.
+
+Each implementation should solve the problem before the maximum number of epochs. If not, a bug may have been introduced.
+
 
 ## ANSI C Implementation
 
@@ -55,12 +64,12 @@ The reference implementation is provided in C.
 
 We are tying to develop a Python version that is about as fast as the C version.
 
-My ANSI C is a little rusty so the implementation is not highly optimized.
+My ANSI C is a little rusty so the implementation is naive at nest and not highly optimized.
 
 * Uses a struct for each candidate solution to track bits, length, and fitness.
 * Mallocs each candidate on demand and candidates are not reused.
 * Lots of for-loop iteration
-* No fancy memory tricks.
+* No fancy memory tricks or bitshifts.
 * Reports best result each epoch on stdout.
 
 That being said, if you want to develop an optimized version of this implementation, I'd love to see it.
@@ -138,7 +147,7 @@ sys	0m0.034s
 
 
 
-### Version 02
+### Version 02 (simplified)
 
 This version seeks to simplify the Python version.
 
@@ -170,13 +179,13 @@ user	0m3.285s
 sys	0m0.026s
 ```
 
-### Version 03
+### Version 03 (naive numpy)
 
 This version ports the Python version to use the NumPy API.
 
 * Use numpy arrays for bitstrings.
 * Use functions on numpy arrays, e.g. sum().
-* Uses nunpy random functions.
+* Uses numpy random functions.
 
 The source code is available here:
 
@@ -203,7 +212,7 @@ sys	0m0.273s
 ```
 
 
-### Version 04
+### Version 04 (optimized)
 
 This version optimizes the NumPy version.
 
@@ -238,7 +247,7 @@ sys	0m0.037s
 
 
 
-### Version 05
+### Version 05 (vectorized)
 
 This version further optimizes the NumPy version.
 
@@ -279,5 +288,9 @@ sys	0m0.035s
 * Do not re-evaluate if child is a copy of parent and not mutated.
 * Reuse arrays used for vectorized random number generation.
 
+Do you have more ideas?
+Do you see a bug?
+Let's chat!
 
+Email me: Jason.Brownlee05@gmail.com
 
