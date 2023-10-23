@@ -14,10 +14,13 @@ Optimization algorithms have to be fast and I had a thought:
 
 This project explores how we might develop an implementation of the "simple genetic algorithm" in Python that is about as fast as an implementation in ANSI C. It's probably not possible but it is interesting to see how close can we get.
 
-I did this years ago, I've just decided to make it public (someone asked me about it).
+I explored this question years ago, I've just decided to make it public (someone asked me about it). I've since added some more versions and pushed the time closer to parity.
 
 
 ## Results
+
+A naive port from C to Python is about 10x slower, work is required to get the execution time back down again to something sane. I expect numpy masters and code-golfers could cut more milliseconds and lines (if so, let me know).
+
 
 Version     | Time (sec) | Speedup (c) | Speedup (v01)
 ------------|------------|--------------|------------
@@ -330,6 +333,8 @@ sys	0m0.033s
 * Benchmark more consistently (repeat 3+ times and take mean execution time).
 * Optimize array data types (bitstrings, random numbers), see if speed improvement for small/different types.
 * Can we represent the population of bitstrings as a matrix and is it faster?
+* All this preallocating arrays is fun, but makes it hard to read, probably introduces bugs and does not do much for speed, cut it!?
+
 
 
 I have genetic algorithm implementations in a bunch of other languages on disk, I may add them to this project if there's interest.
