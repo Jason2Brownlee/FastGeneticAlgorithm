@@ -29,7 +29,7 @@ Version 04  | 1.211      | 0.445x       | 4.025x
 Version 05  | 0.787      | 0.685x       | 6.193x
 
 
-* Speedup (c) is the speedup factor of the python version over the ANSI c version.
+* Speedup (c) is the speedup factor of the python version over the ANSI-C version.
 * Speedup (v01) is the speedup factor of the Python version over version 01 Python version.
 * A speedup factor below 1 means the implementation is slower, above means it's faster.
 
@@ -287,6 +287,16 @@ sys	0m0.035s
 * Early stopping once solution found.
 * Do not re-evaluate if child is a copy of parent and not mutated.
 * Reuse arrays used for vectorized random number generation.
+* Remove all custom functions and do everything in one large function.
+* More vectorization somehow?
+* Try not to copy best solution found so far, somehow?
+* Benchmark more consistently (repeat 3+ times and take mean execution time).
+* Optimize array data types (bitstrings, random numbers), see if speed improvement for small/different types.
+* Can we vecorize crossover for the entire population?
+* Can we represent the population of bitstrings as a matrix and is it faster?
+
+
+I have genetic algorithm implementations in a bunch of other languages on disk, I may add them to this project if there's interest.
 
 Do you have more ideas?
 Do you see a bug?
