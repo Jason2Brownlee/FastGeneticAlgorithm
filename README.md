@@ -65,7 +65,7 @@ The reference implementation is provided in C.
 
 We are tying to develop a Python version that is about as fast as the C version.
 
-My ANSI C is a little rusty so the implementation is naive at nest and not highly optimized.
+My ANSI C is a little rusty so the implementation is naive (at best) and not highly optimized.
 
 * Uses a struct for each candidate solution to track bits, length, and fitness.
 * Mallocs each candidate on demand and candidates are not reused.
@@ -256,7 +256,7 @@ This version further optimizes the NumPy version.
 * Preallocate parent and child memory and reuse each iteration.
 * Specify bitstring array data type as int64 (seems fastest in testing).
 * Vectorized tournament selection for entire population.
-* Vectorize crossover point selection for entire population.
+* Vectorized crossover point selection for entire population.
 
 The source code is available here:
 
@@ -288,10 +288,10 @@ sys	0m0.035s
 
 This version further optimizes the NumPy version.
 
-* Vectorize choice to crossover or not.
-* Vectorize choice to mutate all bits per generation.
+* Vectorized choice to crossover or not.
+* Vectorized choice to mutate all bits per generation.
 * Preallocate arrays for random choices.
-* Use float32 for probabilsitic decisions (crossover and mutate)
+* Use float32 for probabilistic decisions (crossover and mutate)
 
 The source code is available here:
 
@@ -329,7 +329,6 @@ sys	0m0.033s
 * Try not to copy best solution found so far, somehow?
 * Benchmark more consistently (repeat 3+ times and take mean execution time).
 * Optimize array data types (bitstrings, random numbers), see if speed improvement for small/different types.
-* Can we vecorize crossover for the entire population?
 * Can we represent the population of bitstrings as a matrix and is it faster?
 
 
