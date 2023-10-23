@@ -104,6 +104,3 @@ if __name__ == '__main__':
     # run the genetic algorithm
     best = genetic_algorithm(r_seed, n_strings, length, n_epochs, n_rounds, m_rate, c_rate)
     print('Done')
-
-# it has stopped solving for some reason...
-

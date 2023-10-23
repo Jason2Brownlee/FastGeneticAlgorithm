@@ -33,6 +33,7 @@ Version 05  | 0.787      | 0.685x       | 6.193x
 Version 06  | 0.633      | 0.852x       | 7.700x
 
 
+* Execution time is taken from the best of 3 sequential runs on my workstation.
 * Speedup (c) is the speedup factor of the python version over the ANSI-C version.
 * Speedup (v01) is the speedup factor of the Python version over version 01 Python version.
 * A speedup factor below 1 means the implementation is slower, above means it's faster.
@@ -318,6 +319,32 @@ Done
 real	0m0.633s
 user	0m0.592s
 sys	0m0.033s
+```
+
+
+
+
+
+### Version 07 (optimizations)
+
+This version further optimizes the NumPy version.
+
+* Preallocate array for selected parents each iteration.
+* Removed fitness function, made it inline.
+
+The source code is available here:
+
+* [version07.py](src/python/version07.py)
+
+```default
+time python ./version07.py
+```
+
+A sample of results is provided below.
+
+```default
+...
+xxx
 ```
 
 
