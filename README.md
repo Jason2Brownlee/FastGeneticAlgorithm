@@ -33,6 +33,7 @@ Version 05  | 0.787      | 0.685x       | 6.193x
 Version 06  | 0.633      | 0.852x       | 7.700x
 Version 07  | 0.625      | 0.862x       | 7.798x
 Version 08  | 0.602      | 0.895x       | 8.096x
+Version 09  | 0.452      | 1.192x       | 10.783x
 
 
 * Execution time is taken from the best of 3 sequential runs on my workstation.
@@ -396,6 +397,42 @@ sys	0m0.034s
 
 
 
+### Version 09 (matrix)
+
+This version explores using a matrix to hold all bitstrings in each generation.
+
+* One matrix for current and one for next generation.
+* Separate array for fitness scores.
+* Vectorized onemax (fitness) and best in population (argmax).
+* Population-wide vectorization of mutation.
+
+The source code is available here:
+
+* [version09.py](src/python/version09.py)
+
+```default
+time python ./version09.py
+```
+
+A sample of results is provided below.
+
+```default
+...
+>495 fitness=1000
+>496 fitness=1000
+>497 fitness=1000
+>498 fitness=1000
+>499 fitness=1000
+Done
+
+real	0m0.452s
+user	0m0.415s
+sys	0m0.031s
+```
+
+
+
+
 ## Ideas
 
 * Do not re-evaluate if child is a copy of parent and not mutated.
@@ -403,11 +440,10 @@ sys	0m0.034s
 * Try not to copy best solution found so far, somehow?
 * Benchmark more consistently (repeat 3+ times and take mean execution time).
 * Optimize array data types (bitstrings, random numbers), see if speed improvement for small/different types.
-* Can we represent the population of bitstrings as a matrix and is it faster?
 * All this preallocating arrays is fun, but makes it hard to read, probably introduces bugs and does not do much for speed, cut it!?
 * Precompute all random numbers for all epochs (madness!)
 * Use threadpool to prepare the next generation in parallel (numpy calls will release the gil)
-
+* Find a randint function that populates array instead of create+populate (slower).
 
 I have genetic algorithm implementations in a bunch of other languages on disk, I may add them to this project if there's interest.
 
