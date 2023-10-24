@@ -16,7 +16,7 @@ float rand_float() {
 }
 
 // helper to generate a random bit in {0, 1}
-int	rand_bit() {
+int rand_bit() {
 	if(rand_float() < 0.5) {
 		return 0;
 	}
@@ -125,7 +125,7 @@ struct Candidate* genetic_algorithm(int r_seed, int n_strings, int length, int n
 	}
 	// evolve
 	for (int epoch = 0; epoch < n_epochs; epoch++) {
-		// evaluate all candidate solitions
+		// evaluate all candidate solutions
 		for (int i = 0; i < n_strings; i++) {
 			// calculate and assign fitness
 			pop[i]->score = fitness(pop[i]);

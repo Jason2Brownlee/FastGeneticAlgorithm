@@ -77,6 +77,7 @@ My ANSI C is a little rusty so the implementation is naive (at best) and not hig
 
 * Uses a struct for each candidate solution to track bits, length, and fitness.
 * Mallocs each candidate on demand and candidates are not reused.
+* Does not free memory.
 * Lots of for-loop iteration
 * No fancy memory tricks or bitshifts.
 * Reports best result each epoch on stdout.
