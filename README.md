@@ -374,7 +374,8 @@ sys	0m0.034s
 * Optimize array data types (bitstrings, random numbers), see if speed improvement for small/different types.
 * Can we represent the population of bitstrings as a matrix and is it faster?
 * All this preallocating arrays is fun, but makes it hard to read, probably introduces bugs and does not do much for speed, cut it!?
-* precompute all random numbers for all epochs (madness!)
+* Precompute all random numbers for all epochs (madness!)
+* Use threadpool to prepare the next generation in parallel (numpy calls will release the gil)
 
 
 I have genetic algorithm implementations in a bunch of other languages on disk, I may add them to this project if there's interest.
