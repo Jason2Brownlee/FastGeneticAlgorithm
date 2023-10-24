@@ -22,9 +22,9 @@ I explored this question years ago, I've just decided to make it public (someone
 A naive port from C to Python is about 10x slower, work is required to get the execution time back down again to something sane. I expect numpy masters and code-golfers could cut more milliseconds and lines (if so, let me know).
 
 
-Version     | Time (sec) | Speedup (c) | Speedup (v01)
-------------|------------|--------------|------------
-[ANSI C](src/c/simple_ga.c)      | 0.539      | n/a          | n/a
+Version                                | Time (sec) | Speedup (c) | Speedup (v01)
+---------------------------------------|------------|--------------|-------------
+[ANSI C](src/c/simple_ga.c)            | 0.539      | n/a          | n/a
 [Version 01](src/python/version01.py)  | 4.874      | 0.111x       | n/a
 [Version 02](src/python/version02.py)  | 3.339      | 0.161x       | 1.460x
 [Version 03](src/python/version03.py)  | 20.590     | 0.026x       | 0.237x
