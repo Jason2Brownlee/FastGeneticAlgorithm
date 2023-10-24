@@ -34,6 +34,7 @@ Version 06  | 0.633      | 0.852x       | 7.700x
 Version 07  | 0.625      | 0.862x       | 7.798x
 Version 08  | 0.602      | 0.895x       | 8.096x
 Version 09  | 0.452      | 1.192x       | 10.783x
+Version 10  | 0.448      | 1.203x       | 10.879x
 
 
 * Execution time is taken from the best of 3 sequential runs on my workstation.
@@ -428,6 +429,38 @@ Done
 real	0m0.452s
 user	0m0.415s
 sys	0m0.031s
+```
+
+
+
+### Version 10 (optimizations)
+
+This version explores optimizing use of the matrix used to hold all bitstrings.
+
+* Copy all selected parents over child then only copy second parents bits if crossed over.
+
+The source code is available here:
+
+* [version10.py](src/python/version10.py)
+
+```default
+time python ./version10.py
+```
+
+A sample of results is provided below.
+
+```default
+...
+>495 fitness=1000
+>496 fitness=1000
+>497 fitness=1000
+>498 fitness=1000
+>499 fitness=1000
+Done
+
+real	0m0.448s
+user	0m0.410s
+sys	0m0.032s
 ```
 
 
