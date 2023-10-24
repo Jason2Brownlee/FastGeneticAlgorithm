@@ -24,17 +24,17 @@ A naive port from C to Python is about 10x slower, work is required to get the e
 
 Version     | Time (sec) | Speedup (c) | Speedup (v01)
 ------------|------------|--------------|------------
-ANSI C      | 0.539      | n/a          | n/a
-Version 01  | 4.874      | 0.111x       | n/a
-Version 02  | 3.339      | 0.161x       | 1.460x
-Version 03  | 20.590     | 0.026x       | 0.237x
-Version 04  | 1.211      | 0.445x       | 4.025x
-Version 05  | 0.787      | 0.685x       | 6.193x
-Version 06  | 0.633      | 0.852x       | 7.700x
-Version 07  | 0.625      | 0.862x       | 7.798x
-Version 08  | 0.602      | 0.895x       | 8.096x
-Version 09  | 0.452      | 1.192x       | 10.783x
-Version 10  | 0.448      | 1.203x       | 10.879x
+[ANSI C](src/c/simple_ga.c)      | 0.539      | n/a          | n/a
+[Version 01](src/python/version01.py)  | 4.874      | 0.111x       | n/a
+[Version 02](src/python/version02.py)  | 3.339      | 0.161x       | 1.460x
+[Version 03](src/python/version03.py)  | 20.590     | 0.026x       | 0.237x
+[Version 04](src/python/version04.py)  | 1.211      | 0.445x       | 4.025x
+[Version 05](src/python/version05.py)  | 0.787      | 0.685x       | 6.193x
+[Version 06](src/python/version06.py)  | 0.633      | 0.852x       | 7.700x
+[Version 07](src/python/version07.py)  | 0.625      | 0.862x       | 7.798x
+[Version 08](src/python/version08.py)  | 0.602      | 0.895x       | 8.096x
+[Version 09](src/python/version09.py)  | 0.452      | 1.192x       | 10.783x
+[Version 10](src/python/version10.py)  | 0.448      | 1.203x       | 10.879x
 
 
 * Execution time is taken from the best of 3 sequential runs on my workstation.
