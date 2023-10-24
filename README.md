@@ -444,6 +444,7 @@ sys	0m0.031s
 * Precompute all random numbers for all epochs (madness!)
 * Use threadpool to prepare the next generation in parallel (numpy calls will release the gil)
 * Find a randint function that populates array instead of create+populate (slower).
+* Can we create one big mask for crossover and apply it to the entire population matrices? Surely!
 
 I have genetic algorithm implementations in a bunch of other languages on disk, I may add them to this project if there's interest.
 
