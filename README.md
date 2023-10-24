@@ -32,6 +32,7 @@ Version 04  | 1.211      | 0.445x       | 4.025x
 Version 05  | 0.787      | 0.685x       | 6.193x
 Version 06  | 0.633      | 0.852x       | 7.700x
 Version 07  | 0.625      | 0.862x       | 7.798x
+Version 08  | 0.602      | 0.895x       | 8.096x
 
 
 * Execution time is taken from the best of 3 sequential runs on my workstation.
@@ -361,13 +362,43 @@ sys	0m0.034s
 ```
 
 
+### Version 08 (optimizations)
+
+This version further optimizes the NumPy version.
+
+* Moved tournament selection to be inline.
+* Simplified iteration for tournament selection.
+
+The source code is available here:
+
+* [version08.py](src/python/version08.py)
+
+```default
+time python ./version08.py
+```
+
+A sample of results is provided below.
+
+```default
+...
+>495 fitness=1000
+>496 fitness=1000
+>497 fitness=1000
+>498 fitness=1000
+>499 fitness=1000
+Done
+
+real	0m0.602s
+user	0m0.563s
+sys	0m0.034s
+```
+
+
 
 
 ## Ideas
 
-* Early stopping once solution found.
 * Do not re-evaluate if child is a copy of parent and not mutated.
-* Remove all custom functions and do everything in one large function.
 * More vectorization somehow?
 * Try not to copy best solution found so far, somehow?
 * Benchmark more consistently (repeat 3+ times and take mean execution time).
