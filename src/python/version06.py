@@ -71,7 +71,7 @@ def genetic_algorithm(r_seed, n_strings, length, n_epochs, n_rounds, m_rate, c_r
         # pre-determine all crossover choices, one for each pair
         cross_choices = rng.random(dtype=numpy.float32, out=cross_rands) <= c_rate
         cross_points = rng.integers(low=1, high=length-2, size=int(n_strings/2), endpoint=True, dtype=numpy.int64)
-        # pre-determine all mitation choices, one for each bit
+        # pre-determine all mutation choices, one for each bit
         mut_choices = rng.random(dtype=numpy.float32, out=mut_rands) <= m_rate
         # create children, 2 at a time, from selected parents
         for i in range(0, n_strings, 2):

@@ -31,6 +31,7 @@ Version 03  | 20.590     | 0.026x       | 0.237x
 Version 04  | 1.211      | 0.445x       | 4.025x
 Version 05  | 0.787      | 0.685x       | 6.193x
 Version 06  | 0.633      | 0.852x       | 7.700x
+Version 07  | 0.625      | 0.862x       | 7.798x
 
 
 * Execution time is taken from the best of 3 sequential runs on my workstation.
@@ -331,6 +332,9 @@ This version further optimizes the NumPy version.
 
 * Preallocate array for selected parents each iteration.
 * Removed fitness function, made it inline.
+* Simplify crossover, remove redundant copying and return.
+* Use positional over named arguments where possible.
+* Move crossover and mutation to be inline.
 
 The source code is available here:
 
@@ -344,7 +348,16 @@ A sample of results is provided below.
 
 ```default
 ...
-xxx
+>495 fitness=1000
+>496 fitness=1000
+>497 fitness=1000
+>498 fitness=1000
+>499 fitness=1000
+Done
+
+real	0m0.625s
+user	0m0.583s
+sys	0m0.034s
 ```
 
 
