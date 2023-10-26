@@ -12,7 +12,7 @@ Optimization algorithms have to be fast and I had a thought:
 
 > Can I get Python genetic algorithm to run about as fast as C?
 
-This project explores how we might develop an implementation of the "simple genetic algorithm" in Python that is about as fast as an implementation in ANSI C. It's probably not possible but it is interesting to see how close can we get.
+This project explores how we might develop an implementation of the "simple genetic algorithm" in Python that is about as fast as an implementation in ANSI C. It is interesting and to see how close can we get, then how far we can go.
 
 I explored this question years ago, I've just decided to make it public (someone asked me about it). I've since added some more versions and pushed the time closer to parity.
 
@@ -34,7 +34,8 @@ Version                                | Time (sec) | Speedup (c) | Speedup (v01
 [Version 07](src/python/version07.py)  | 0.625      | 0.862x       | 7.798x
 [Version 08](src/python/version08.py)  | 0.602      | 0.895x       | 8.096x
 [Version 09](src/python/version09.py)  | 0.452      | 1.192x       | 10.783x
-[Version 10](src/python/version10.py)  | **0.448**  | **1.203x**   | **10.879x**
+[Version 10](src/python/version10.py)  | 0.448      | 1.203x       | 10.879x
+[Version 10](src/python/version10.py)  | **0.380**  | **1.418x**   | **12.826x**
 
 
 * Execution time is taken from the best of 3 sequential runs on my workstation.
@@ -464,6 +465,38 @@ user	0m0.410s
 sys	0m0.032s
 ```
 
+
+
+
+### Version 11 (vectorization)
+
+This version explores further numpy optimization via vectorization of loops.
+
+* Vectorized version of tournament selection with argmax.
+
+The source code is available here:
+
+* [version11.py](src/python/version11.py)
+
+```default
+time python ./version11.py
+```
+
+A sample of results is provided below.
+
+```default
+...
+>495 fitness=1000
+>496 fitness=1000
+>497 fitness=1000
+>498 fitness=1000
+>499 fitness=1000
+Done
+
+real	0m0.380s
+user	0m0.340s
+sys	0m0.033s
+```
 
 
 
