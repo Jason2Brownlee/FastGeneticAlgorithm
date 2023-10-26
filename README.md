@@ -35,7 +35,8 @@ Version                                | Time (sec) | Speedup (c) | Speedup (v01
 [Version 08](src/python/version08.py)  | 0.602      | 0.895x       | 8.096x
 [Version 09](src/python/version09.py)  | 0.452      | 1.192x       | 10.783x
 [Version 10](src/python/version10.py)  | 0.448      | 1.203x       | 10.879x
-[Version 11](src/python/version11.py)  | **0.380**  | **1.418x**   | **12.826x**
+[Version 11](src/python/version11.py)  | 0.380      | 1.418x       | 12.826x
+[Version 12](src/python/version12.py)  | **0.377**  | **1.430x**   | **12.928x**
 
 
 * Execution time is taken from the best of 3 sequential runs on my workstation.
@@ -500,18 +501,54 @@ sys	0m0.033s
 
 
 
+
+### Version 12 (tweaks)
+
+This version explores minor tweaks.
+
+* Use // operator instead of casting floats.
+* Preallocate array for best solution found so far.
+* Preallocate array for arrange used in tournament selection.
+* Added more comments.
+
+The source code is available here:
+
+* [version12.py](src/python/version12.py)
+
+```default
+time python ./version12.py
+```
+
+A sample of results is provided below.
+
+```default
+...
+>495 fitness=1000
+>496 fitness=1000
+>497 fitness=1000
+>498 fitness=1000
+>499 fitness=1000
+Done
+
+real	0m0.377s
+user	0m0.337s
+sys	0m0.033s
+```
+
+
+
 ## Ideas
 
 * Do not re-evaluate if child is a copy of parent and not mutated.
 * More vectorization somehow?
-* Try not to copy best solution found so far, somehow?
 * Benchmark more consistently (repeat 3+ times and take mean execution time).
 * Optimize array data types (bitstrings, random numbers), see if speed improvement for small/different types.
-* All this preallocating arrays is fun, but makes it hard to read, probably introduces bugs and does not do much for speed, cut it!?
 * Precompute all random numbers for all epochs (madness!)
 * Use threadpool to prepare the next generation in parallel (numpy calls will release the gil)
+	* Starting and closing the thread pool adds a massive overhead
 * Find a randint function that populates array instead of create+populate (slower).
 * Can we create one big mask for crossover and apply it to the entire population matrices? Surely!
+	* Tried and it was 100ms slower, worked though...
 * Explore JIT with numba, jax, or similar.
 * Explore Cython.
 
