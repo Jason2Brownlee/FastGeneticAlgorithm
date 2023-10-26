@@ -1,5 +1,5 @@
 # simple genetic algorithm in python
-# version 10
+# version 11
 # jason brownlee
 import numpy
 
