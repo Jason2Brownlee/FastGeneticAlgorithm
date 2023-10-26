@@ -8,6 +8,7 @@ from numpy import ubyte
 from numpy import float32
 from numpy import ushort
 from numpy import uintc
+from numpy import logical_xor
 from numpy.random import default_rng
 from gc import disable
 
@@ -66,9 +67,9 @@ def genetic_algorithm(r_seed, n_strings, length, n_epochs, n_rounds, m_rate, c_r
                 # copy bits from parents into child 2
                 bitstrings_children[i+1,cp:] = bitstrings_pop[p1,cp:]
         # determine mutations for all bits in new population
-        mut_choices = rng.random(None, float32, mut_rands) <= m_rate
+        mutation_mask = rng.random(None, float32, mut_rands) <= m_rate
         # apply mutations
-        bitstrings_children[mut_choices] ^= 1
+        logical_xor(bitstrings_children, 1, bitstrings_children, where=mutation_mask)
         # swap parents and children populations
         bitstrings_pop, bitstrings_children = bitstrings_children, bitstrings_pop
     # return best candidate discovered

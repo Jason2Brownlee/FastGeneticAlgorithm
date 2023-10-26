@@ -38,7 +38,7 @@ Version                                | Time (sec) | Speedup (c) | Speedup (v01
 [Version 11](src/python/version11.py)  | 0.380      | 1.418x       | 12.826x
 [Version 12](src/python/version12.py)  | 0.377      | 1.430x       | 12.928x
 [Version 13](src/python/version13.py)  | 0.343      | 1.571x       | 14.210x
-[Version 14](src/python/version14.py)  | **0.336**  | **1.604x**   | **14.506x**
+[Version 14](src/python/version14.py)  | **0.333**  | **1.619x**   | **14.637x**
 
 
 * Execution time is taken from the best of 3 sequential runs on my workstation.
@@ -583,6 +583,7 @@ This version explores minor tweaks.
 * Simplified fitness sum().
 * Simplified array init to be all zeros()
 * Disable Python garbage collector.
+* Use logical xor function to apply mutations with mask.
 
 The source code is available here:
 
@@ -603,9 +604,9 @@ A sample of results is provided below.
 >499 fitness=1000
 Done
 
-real	0m0.336s
-user	0m0.298s
-sys	0m0.033s
+real	0m0.333s
+user	0m0.296s
+sys	0m0.032s
 ```
 
 
