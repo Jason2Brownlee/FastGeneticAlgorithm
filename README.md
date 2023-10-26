@@ -37,7 +37,8 @@ Version                                | Time (sec) | Speedup (c) | Speedup (v01
 [Version 10](src/python/version10.py)  | 0.448      | 1.203x       | 10.879x
 [Version 11](src/python/version11.py)  | 0.380      | 1.418x       | 12.826x
 [Version 12](src/python/version12.py)  | 0.377      | 1.430x       | 12.928x
-[Version 13](src/python/version13.py)  | **0.343**  | **1.571x**   | **14.210x**
+[Version 13](src/python/version13.py)  | 0.343      | 1.571x       | 14.210x
+[Version 14](src/python/version14.py)  | **0.336**  | **1.604x**   | **14.506x**
 
 
 * Execution time is taken from the best of 3 sequential runs on my workstation.
@@ -569,6 +570,44 @@ real	0m0.343s
 user	0m0.305s
 sys	0m0.031s
 ```
+
+
+
+### Version 14 (tweaks)
+
+This version explores minor tweaks.
+
+* Represent bitstrings with ubyte.
+* Specific imports rather than import all.
+* Replace copyto() with broadcast.
+* Simplified fitness sum().
+* Simplified array init to be all zeros()
+* Disable Python garbage collector.
+
+The source code is available here:
+
+* [version14.py](src/python/version14.py)
+
+```default
+time python ./version14.py
+```
+
+A sample of results is provided below.
+
+```default
+...
+>495 fitness=1000
+>496 fitness=1000
+>497 fitness=1000
+>498 fitness=1000
+>499 fitness=1000
+Done
+
+real	0m0.336s
+user	0m0.298s
+sys	0m0.033s
+```
+
 
 
 
