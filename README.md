@@ -35,7 +35,7 @@ Version                                | Time (sec) | Speedup (c) | Speedup (v01
 [Version 08](src/python/version08.py)  | 0.602      | 0.895x       | 8.096x
 [Version 09](src/python/version09.py)  | 0.452      | 1.192x       | 10.783x
 [Version 10](src/python/version10.py)  | 0.448      | 1.203x       | 10.879x
-[Version 10](src/python/version10.py)  | **0.380**  | **1.418x**   | **12.826x**
+[Version 11](src/python/version11.py)  | **0.380**  | **1.418x**   | **12.826x**
 
 
 * Execution time is taken from the best of 3 sequential runs on my workstation.
