@@ -54,7 +54,7 @@ def genetic_algorithm(r_seed, n_strings, length, n_epochs, n_rounds, m_rate, c_r
         # choose which pairs will participate in crossover
         cross_choices = rng.random(None, float32, cross_rands) <= c_rate
         # choose crossover points
-        cross_points = rng.integers(1, length-1, n_strings//2, uintc)
+        cross_points = rng.integers(1, length, n_strings//2, uintc)
         # define the crossover mask
         crossover_masks = aranged2 >= cross_points[:, newaxis]
         # update the mask to not crossover parents not participating in crossover

@@ -51,7 +51,7 @@ def genetic_algorithm(r_seed, n_strings, length, n_epochs, n_rounds, m_rate, c_r
         # generate random floats and choose all pairs to participate in crossover
         cross_choices = rng.random(None, float32, cross_rands) <= c_rate
         # choose a crossover point for all pairs of parents
-        cross_points = rng.integers(1, length-1, n_strings//2, uintc)
+        cross_points = rng.integers(1, length, n_strings//2, uintc)
         # copy all selected parent bits to children
         bitstrings_children[:] = bitstrings_pop[parents,:]
         # perform one-point crossover where needed
