@@ -38,14 +38,15 @@ Version                                | Time (sec) | Speedup (c) | Speedup (v01
 [Version 11](src/python/version11.py)  | 0.380      | 1.418x       | 12.826x
 [Version 12](src/python/version12.py)  | 0.377      | 1.430x       | 12.928x
 [Version 13](src/python/version13.py)  | 0.343      | 1.571x       | 14.210x
-[Version 14](src/python/version14.py)  | **0.333**  | **1.619x**   | **14.637x**
+[Version 14](src/python/version14.py)  | **0.328**  | **1.643x**   | **14.860x**
+[Version 15](src/python/version15.py)  | 0.347      | 1.553x       | 14.046x
 
 
 * Execution time is taken from the best of 3 sequential runs on my workstation.
 * Speedup (c) is the speedup factor of the python version over the ANSI-C version.
 * Speedup (v01) is the speedup factor of the Python version over version 01 Python version.
 * A speedup factor below 1 means the implementation is slower, above means it's faster.
-
+* The fastest version if highlighted in bold.
 
 ## Simple Genetic Algorithm
 
@@ -604,9 +605,43 @@ A sample of results is provided below.
 >499 fitness=1000
 Done
 
-real	0m0.333s
-user	0m0.296s
-sys	0m0.032s
+real	0m0.328s
+user	0m0.292s
+sys	0m0.030s
+```
+
+
+
+### Version 15 (vectorized crossover)
+
+This version explores the fastest version of vectorized one-point crossover I could come up with.
+
+It is slower than the prior version, but might lead to better ideas.
+
+* Vectorized version of one-point crossover (slower)
+
+The source code is available here:
+
+* [version15.py](src/python/version15.py)
+
+```default
+time python ./version15.py
+```
+
+A sample of results is provided below.
+
+```default
+...
+>495 fitness=1000
+>496 fitness=1000
+>497 fitness=1000
+>498 fitness=1000
+>499 fitness=1000
+Done
+
+real	0m0.347s
+user	0m0.310s
+sys	0m0.031s
 ```
 
 
