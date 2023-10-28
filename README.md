@@ -40,7 +40,7 @@ Version                                | Time (sec) | Speedup (c) | Speedup (v01
 [Version 13](src/python/version13.py)  | 0.343      | 1.571x       | 14.210x
 [Version 14](src/python/version14.py)  | 0.328      | 1.643x       | 14.860x
 [Version 15](src/python/version15.py)  | 0.347      | 1.553x       | 14.046x
-[Version 16](src/python/version16.py)  | **0.308**  | **1.750x**   | **115.825x**
+[Version 16](src/python/version16.py)  | **0.308**  | **1.750x**   | **15.825x**
 
 
 * Execution time is taken from the best of 3 sequential runs on my workstation.
