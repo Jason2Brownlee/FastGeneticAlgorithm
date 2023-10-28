@@ -23,37 +23,37 @@ def genetic_algorithm(r_seed, n_strings, length, n_epochs, n_rounds, m_rate, c_r
     # preallocate memory for the children we will create
     bitstrings_children = empty((n_strings, length), bool_)
     # empty array for all fitness scores
-    fitness_pop = empty(n_strings, ushort)
+    fitness_scores = empty(n_strings, ushort)
     # preallocate arrays for random choices
-    cross_rands = empty(n_strings//2, float32)
-    mut_rands = empty((n_strings, length), float32)
+    rands_crossover = empty(n_strings//2, float32)
+    rands_mutation = empty((n_strings, length), float32)
     arranged = arange(n_strings)
     # pre-choose all crossover points for all epochs
     cross_points = rng.integers(1, length, (n_epochs, n_strings//2), uintc)
     # pre choose all tournament draws for all epochs
     torn_ixs = rng.integers(0, n_strings, (n_epochs, n_strings, n_rounds), ushort)
     # indexes of selected parents
-    parents = empty(n_strings, ushort)
+    parents_ix = empty(n_strings, ushort)
     # run the algorithm
     for epoch in range(n_epochs):
         # calculate fitness for current population (onemax)
-        bitstrings_parents.sum(1, ushort, fitness_pop)
+        bitstrings_parents.sum(1, ushort, fitness_scores)
         # locate the candidate with the best fitness
-        best_ix = argmax(fitness_pop)
+        best_ix = argmax(fitness_scores)
         # check for new best
-        if fitness_pop[best_ix] > best_fitness:
+        if fitness_scores[best_ix] > best_fitness:
             # store the best fitness score and bit string
-            best_fitness, best_string = fitness_pop[best_ix], bitstrings_parents[best_ix, :]
+            best_fitness, best_string = fitness_scores[best_ix], bitstrings_parents[best_ix, :]
         # report best
         print(f'>{epoch} fitness={best_fitness}')
         # find the index of the maximum fitness in each tournament
-        tournament_winners = argmax(fitness_pop[torn_ixs[epoch]], axis=1)
-        # update the parents with the winners' indexes
-        parents[:] = torn_ixs[epoch, arranged, tournament_winners]
+        tournament_winners = argmax(fitness_scores[torn_ixs[epoch]], axis=1)
+        # update the parents with the winner indexes
+        parents_ix[:] = torn_ixs[epoch, arranged, tournament_winners]
         # generate random floats and choose all pairs to participate in crossover
-        cross_choices = rng.random(None, float32, cross_rands) <= c_rate
+        cross_choices = rng.random(None, float32, rands_crossover) <= c_rate
         # copy all selected parent bits to children
-        bitstrings_children[:] = bitstrings_parents[parents,:]
+        bitstrings_children[:] = bitstrings_parents[parents_ix,:]
         # perform one-point crossover where needed
         for i in range(0, n_strings, 2):
             # # perform conditional crossover
@@ -61,11 +61,11 @@ def genetic_algorithm(r_seed, n_strings, length, n_epochs, n_rounds, m_rate, c_r
                 # get the crossover point
                 cp = cross_points[epoch, i//2]
                 # copy bits from parents into child 1
-                bitstrings_children[i,cp:] = bitstrings_parents[parents[i+1],cp:]
+                bitstrings_children[i,cp:] = bitstrings_parents[parents_ix[i+1],cp:]
                 # copy bits from parents into child 2
-                bitstrings_children[i+1,cp:] = bitstrings_parents[parents[i],cp:]
+                bitstrings_children[i+1,cp:] = bitstrings_parents[parents_ix[i],cp:]
         # determine mutations for all bits in new population
-        mutation_mask = rng.random(None, float32, mut_rands) <= m_rate
+        mutation_mask = rng.random(None, float32, rands_mutation) <= m_rate
         # apply mutations
         bitwise_xor(bitstrings_children, True, out=bitstrings_children, where=mutation_mask, dtype=bool_)
         # swap parents and children populations
